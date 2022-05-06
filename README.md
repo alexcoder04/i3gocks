@@ -3,12 +3,10 @@
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://stand-with-ukraine.pp.ua)
 
-## Project naming
-
-I wanted a creative name for my new project so the idea came to my mind to
-choose a name which would send out a message to the world.
-[Kherson](https://en.wikipedia.org/wiki/Kherson) is a city in the south of
-Ukraine, I chose it to draw attention to Russia's war against Ukraine.
+On 24 February 2022 Russia invaded Ukraine and is killing thousands of innocent
+civilians. This has to stop! I named my new project after
+[Kherson](https://en.wikipedia.org/wiki/Kherson), a city in the south of
+Ukraine, to draw attention to this inacceptable issue.
 
 ---
 
@@ -21,5 +19,4 @@ The main idea is similar to [i3blocks](https://github.com/vivien/i3blocks): the
 status line consists of blocks, every block shows the output of a command.
 However, the config and some functionality is different. In short, this is
 what i3blocks would look like I was had written it.
-
 
