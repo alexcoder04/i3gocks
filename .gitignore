@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+kherson
 
 # Test binary, built with `go test -c`
 *.test
