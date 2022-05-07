@@ -38,7 +38,7 @@ func ReadInput() {
 			continue
 		}
 
-		// update clicked field
+		// update clicked field and re-draw
 		mu.Lock()
 		for i := 0; i < len(config.Modules); i++ {
 			if clickMsg.Name == config.Modules[i].Name {

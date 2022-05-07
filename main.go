@@ -14,6 +14,7 @@ var config Config
 var mu sync.Mutex
 
 func UpdateModule(module Module, counter int, env []string) Module {
+	// don't update if interval didn't pass
 	if counter%module.Interval != 0 {
 		return module
 	}
@@ -31,13 +32,16 @@ func UpdateModule(module Module, counter int, env []string) Module {
 				break
 			}
 			switch i {
+			// first line is text
 			case 0:
 				module.Text = fmt.Sprintf("%s%s%s",
 					module.Pre,
 					strings.Replace(lines[i], "\n", " ", -1),
 					module.Post)
+			// third line is ForegroundColor
 			case 2:
 				module.ForegroundColor = lines[i]
+			// fourth line is BackgroundColor
 			case 3:
 				module.BackgroundColor = lines[i]
 			}
@@ -53,6 +57,7 @@ func draw(counter int) {
 		if err != nil {
 			moduleJson = []byte(`{"full_text":" error"}`)
 		}
+
 		if listJson == "" {
 			listJson = string(moduleJson)
 			continue
@@ -79,6 +84,7 @@ func main() {
 		for i := 0; i < len(config.Modules); i++ {
 			config.Modules[i] = UpdateModule(config.Modules[i], counter, []string{})
 		}
+
 		draw(counter)
 		time.Sleep(1 * time.Second)
 		counter += 1

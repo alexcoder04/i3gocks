@@ -30,9 +30,12 @@ type Config struct {
 func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
-		{"msg", "", "#0000ff", "#ffff00", " ", "", "echo", []string{msg}, 60, "none"},
-		{"time", "", "#ffffff", "#000000", " ", "", "date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none"},
-		{"kernel", "", "#880088", "#ccccee", " ", "", "uname", []string{"-r"}, 60, "none"}}
+		{"msg", "", "#0000ff", "#ffff00", " ", "",
+			"echo", []string{msg}, 60, "none"},
+		{"time", "", "#ffffff", "#000000", " ", "",
+			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none"},
+		{"kernel", "", "#880088", "#ccccee", " ", "",
+			"uname", []string{"-r"}, 60, "none"}}
 	return config
 }
 
@@ -93,17 +96,21 @@ func LoadConfig() Config {
 
 	config := Config{}
 	config.Colors = LoadColors()
+
 	err = yaml.Unmarshal(data, &config)
 	if err != nil {
 		return DefaultConfig("error parsing config")
 	}
 	for i := 0; i < len(config.Modules); i++ {
+		// default foreground color
 		if config.Modules[i].ForegroundColor == "" {
 			config.Modules[i].ForegroundColor = config.Colors["WHITE"]
 		}
+		// foreground color reference
 		if config.Modules[i].ForegroundColor[0] == '*' {
 			config.Modules[i].ForegroundColor = config.Colors[strings.ToUpper(config.Modules[i].ForegroundColor[1:])]
 		}
+		// background color reference
 		if config.Modules[i].BackgroundColor != "" && config.Modules[i].BackgroundColor[0] == '*' {
 			config.Modules[i].BackgroundColor = config.Colors[strings.ToUpper(config.Modules[i].BackgroundColor[1:])]
 		}
