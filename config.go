@@ -8,6 +8,22 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+type Module struct {
+	Name            string   `json:"name" yaml:"Name"`
+	Text            string   `json:"full_text" yaml:"-"`
+	ForegroundColor string   `json:"color" yaml:"ForegroundColor"`
+	BackgroundColor string   `json:"background" yaml:"BackgroundColor"`
+	Pre             string   `json:"-" yaml:"Pre"`
+	Post            string   `json:"-" yaml:"Post"`
+	Command         string   `json:"-" yaml:"Command"`
+	Args            []string `json:"-" yaml:"Args"`
+	Interval        int      `json:"-" yaml:"Interval"`
+}
+
+type Config struct {
+	Modules []Module `yaml:"Modules"`
+}
+
 func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{

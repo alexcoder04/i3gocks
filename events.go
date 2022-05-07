@@ -48,6 +48,7 @@ func ReadInput() {
 					[]string{fmt.Sprintf("BLOCK_BUTTON=%d", clickMsg.Button)})
 			}
 		}
+		draw(0)
 		mu.Unlock()
 	}
 }

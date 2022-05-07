@@ -10,22 +10,6 @@ import (
 	"time"
 )
 
-type Module struct {
-	Name            string   `json:"name" yaml:"Name"`
-	Text            string   `json:"full_text" yaml:"-"`
-	ForegroundColor string   `json:"color" yaml:"ForegroundColor"`
-	BackgroundColor string   `json:"background" yaml:"BackgroundColor"`
-	Pre             string   `json:"-" yaml:"Pre"`
-	Post            string   `json:"-" yaml:"Post"`
-	Command         string   `json:"-" yaml:"Command"`
-	Args            []string `json:"-" yaml:"Args"`
-	Interval        int      `json:"-" yaml:"Interval"`
-}
-
-type Config struct {
-	Modules []Module `yaml:"Modules"`
-}
-
 var config Config
 var mu sync.Mutex
 
@@ -49,6 +33,23 @@ func UpdateModule(module Module, counter int, env []string) Module {
 	return module
 }
 
+func draw(counter int) {
+	listJson := ""
+	for i := 0; i < len(config.Modules); i++ {
+		moduleJson, err := json.Marshal(config.Modules[i])
+		if err != nil {
+			moduleJson = []byte(`{"full_text":" error"}`)
+		}
+		if listJson == "" {
+			listJson = string(moduleJson)
+			continue
+		}
+		listJson = listJson + "," + string(moduleJson)
+	}
+
+	fmt.Printf("[%s],\n", listJson)
+}
+
 func main() {
 	config = LoadConfig()
 
@@ -58,24 +59,11 @@ func main() {
 	go ReadInput()
 
 	counter := 0
-	listJson := ""
 	for {
-		listJson = ""
 		for i := 0; i < len(config.Modules); i++ {
 			config.Modules[i] = UpdateModule(config.Modules[i], counter, []string{})
-
-			moduleJson, err := json.Marshal(config.Modules[i])
-			if err != nil {
-				moduleJson = []byte(`{"full_text":" error"}`)
-			}
-			if listJson == "" {
-				listJson = string(moduleJson)
-				continue
-			}
-			listJson = listJson + "," + string(moduleJson)
 		}
-
-		fmt.Printf("[%s],\n", listJson)
+		draw(counter)
 		time.Sleep(1 * time.Second)
 		counter += 1
 	}
