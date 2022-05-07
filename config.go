@@ -18,6 +18,7 @@ type Module struct {
 	Command         string   `json:"-" yaml:"Command"`
 	Args            []string `json:"-" yaml:"Args"`
 	Interval        int      `json:"-" yaml:"Interval"`
+	Markup          string   `json:"markup" yaml:"Markup"`
 }
 
 type Config struct {
@@ -27,9 +28,9 @@ type Config struct {
 func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
-		{"msg", "", "#0000ff", "#ffff00", " ", "", "echo", []string{msg}, 60},
-		{"time", "", "#ffffff", "#000000", " ", "", "date", []string{"+%d.%m.%Y - %R:%S"}, 1},
-		{"kernel", "", "#880088", "#ccccee", " ", "", "uname", []string{"-r"}, 60}}
+		{"msg", "", "#0000ff", "#ffff00", " ", "", "echo", []string{msg}, 60, "none"},
+		{"time", "", "#ffffff", "#000000", " ", "", "date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none"},
+		{"kernel", "", "#880088", "#ccccee", " ", "", "uname", []string{"-r"}, 60, "none"}}
 	return config
 }
 

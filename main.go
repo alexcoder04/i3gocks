@@ -21,14 +21,27 @@ func UpdateModule(module Module, counter int, env []string) Module {
 	cmd := exec.Command(module.Command, module.Args...)
 	cmd.Env = append(os.Environ(), env...)
 	out, err := cmd.Output()
+
 	if err != nil {
 		module.Text = " error"
 	} else {
 		lines := strings.Split(string(out), "\n")
-		module.Text = fmt.Sprintf("%s%s%s",
-			module.Pre,
-			strings.Replace(lines[0], "\n", " ", -1),
-			module.Post)
+		for i := 0; i <= 3; i++ {
+			if len(lines) < i+1 {
+				break
+			}
+			switch i {
+			case 0:
+				module.Text = fmt.Sprintf("%s%s%s",
+					module.Pre,
+					strings.Replace(lines[i], "\n", " ", -1),
+					module.Post)
+			case 2:
+				module.ForegroundColor = lines[i]
+			case 3:
+				module.BackgroundColor = lines[i]
+			}
+		}
 	}
 	return module
 }
