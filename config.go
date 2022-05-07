@@ -11,9 +11,9 @@ import (
 func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
-		{"", "#0000ff", "#ffff00", " ", "echo", []string{msg}, 60},
-		{"", "#ffffff", "#000000", " ", "date", []string{"+%d.%m.%Y - %R:%S"}, 1},
-		{"", "#880088", "#ccccee", " ", "uname", []string{"-r"}, 60}}
+		{"msg", "", "#0000ff", "#ffff00", " ", "", "echo", []string{msg}, 60},
+		{"time", "", "#ffffff", "#000000", " ", "", "date", []string{"+%d.%m.%Y - %R:%S"}, 1},
+		{"kernel", "", "#880088", "#ccccee", " ", "", "uname", []string{"-r"}, 60}}
 	return config
 }
 
