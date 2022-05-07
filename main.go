@@ -68,6 +68,9 @@ func main() {
 
 	fmt.Println(`{"version": 1, "click_events": true}`)
 	fmt.Println(`[`)
+	fmt.Printf(
+		`[{"full_text": "loading status line...", "color": "%s"}],`,
+		config.Colors["WHITE"])
 
 	go ReadInput()
 
