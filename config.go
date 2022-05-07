@@ -20,6 +20,7 @@ type Module struct {
 	Args            []string `json:"-" yaml:"Args"`
 	Interval        int      `json:"-" yaml:"Interval"`
 	Markup          string   `json:"markup" yaml:"Markup"`
+	Signal          int      `json:"-" yaml:"Signal"`
 }
 
 type Config struct {
@@ -31,16 +32,16 @@ func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
 		{"msg", "", "#0000ff", "#ffff00", " ", "",
-			"echo", []string{msg}, 60, "none"},
+			"echo", []string{msg}, 60, "none", 0},
 		{"time", "", "#ffffff", "#000000", " ", "",
-			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none"},
+			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none", 0},
 		{"kernel", "", "#880088", "#ccccee", " ", "",
-			"uname", []string{"-r"}, 60, "none"}}
+			"uname", []string{"-r"}, 60, "none", 0}}
 	return config
 }
 
 func LoadColors() map[string]string {
-	// default
+	// default (gruvbox)
 	colors := map[string]string{
 		"BLACK":        "#282828",
 		"BLUE":         "#458588",

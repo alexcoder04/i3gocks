@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 )
 
 type ClickMessage struct {
@@ -40,15 +42,24 @@ func ReadInput() {
 
 		// update clicked field and re-draw
 		mu.Lock()
-		for i := 0; i < len(config.Modules); i++ {
-			if clickMsg.Name == config.Modules[i].Name {
-				config.Modules[i] = UpdateModule(
-					config.Modules[i],
-					0,
-					[]string{fmt.Sprintf("BLOCK_BUTTON=%d", clickMsg.Button)})
-			}
-		}
-		draw(0)
+		UpdateModuleByName(
+			clickMsg.Name,
+			0,
+			[]string{fmt.Sprintf("BLOCK_BUTTON=%d", clickMsg.Button)})
+		draw()
 		mu.Unlock()
+	}
+}
+
+func ListenFor(signalNumber int, blockName string) {
+	channel := make(chan os.Signal, 1)
+	signal.Notify(channel, syscall.Signal(signalNumber))
+	select {
+	case <-channel:
+		mu.Lock()
+		UpdateModuleByName(blockName, 0, []string{})
+		draw()
+		mu.Unlock()
+		ListenFor(signalNumber, blockName)
 	}
 }
