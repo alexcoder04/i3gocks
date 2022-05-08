@@ -3,7 +3,7 @@ SHELL = /bin/sh
 PREFIX ?= /usr
 NAME = kherson
 
-build: man
+build:
 	GOOS=linux GOARCH=amd64 go build -o $(NAME) .
 
 clean:
