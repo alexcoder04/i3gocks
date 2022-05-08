@@ -1,12 +1,17 @@
 package main
 
 import (
+	"flag"
 	"io/ioutil"
 	"os"
 	"path"
 	"strings"
 
 	"gopkg.in/yaml.v3"
+)
+
+var (
+	configLocation = flag.String("config", "", "config file")
 )
 
 type Module struct {
@@ -76,13 +81,21 @@ func LoadColors() map[string]string {
 }
 
 func LoadConfig() Config {
-	configDir, err := os.UserConfigDir()
-	if err != nil {
-		return DefaultConfig("cannot get config dir")
+	flag.Parse()
+
+	var configFile string
+
+	if *configLocation != "" {
+		configFile = *configLocation
+	} else {
+		configDir, err := os.UserConfigDir()
+		if err != nil {
+			return DefaultConfig("cannot get config dir")
+		}
+		configFile = path.Join(configDir, "kherson", "config.yml")
 	}
 
-	configFile := path.Join(configDir, "kherson", "config.yml")
-	_, err = os.Stat(configFile)
+	_, err := os.Stat(configFile)
 	if err != nil {
 		if os.IsNotExist(err) {
 			return DefaultConfig("kherson (default config)")
@@ -106,6 +119,10 @@ func LoadConfig() Config {
 		// default foreground color
 		if config.Modules[i].ForegroundColor == "" {
 			config.Modules[i].ForegroundColor = config.Colors["WHITE"]
+		}
+		// default background color
+		if config.Modules[i].BackgroundColor == "" {
+			config.Modules[i].BackgroundColor = config.Colors["BLACK"]
 		}
 		// foreground color reference
 		if config.Modules[i].ForegroundColor[0] == '*' {

@@ -20,3 +20,7 @@ look like I was had written it.
 
 For more infos, see the [wiki](https://github.com/alexcoder04/kherson/wiki).
 
+## Installation and configuration
+
+Refer to the according [wiki pages](https://github.com/alexcoder04/kherson/wiki).
+
