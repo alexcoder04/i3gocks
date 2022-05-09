@@ -47,7 +47,7 @@ func main() {
 	counter := 0
 	for {
 		for i := 0; i < len(config.Modules); i++ {
-			config.Modules[i] = UpdateModule(config.Modules[i], counter, []string{})
+			UpdateModule(i, counter, []string{})
 		}
 
 		draw()
