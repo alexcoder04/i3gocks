@@ -15,18 +15,18 @@ func UpdateModuleByName(name string, counter int, env []string) {
 	}
 }
 
-func UpdateModule(i int, counter int, env []string) {
+func UpdateModule(mod int, counter int, env []string) {
 	// don't update if interval didn't pass
-	if counter%config.Modules[i].Interval != 0 {
+	if counter%config.Modules[mod].Interval != 0 {
 		return
 	}
 
-	cmd := exec.Command(config.Modules[i].Command, config.Modules[i].Args...)
+	cmd := exec.Command(config.Modules[mod].Command, config.Modules[mod].Args...)
 	cmd.Env = append(os.Environ(), env...)
 	out, err := cmd.Output()
 
 	if err != nil {
-		config.Modules[i].Text = " error"
+		config.Modules[mod].Text = " error"
 	} else {
 		lines := strings.Split(string(out), "\n")
 		for i := 0; i <= 3; i++ {
@@ -36,16 +36,16 @@ func UpdateModule(i int, counter int, env []string) {
 			switch i {
 			// first line is text
 			case 0:
-				config.Modules[i].Text = fmt.Sprintf("%s%s%s",
-					config.Modules[i].Pre,
+				config.Modules[mod].Text = fmt.Sprintf("%s%s%s",
+					config.Modules[mod].Pre,
 					strings.Replace(lines[i], "\n", " ", -1),
-					config.Modules[i].Post)
+					config.Modules[mod].Post)
 			// third line is ForegroundColor
 			case 2:
-				config.Modules[i].ForegroundColor = lines[i]
+				config.Modules[mod].ForegroundColor = lines[i]
 			// fourth line is BackgroundColor
 			case 3:
-				config.Modules[i].BackgroundColor = lines[i]
+				config.Modules[mod].BackgroundColor = lines[i]
 			}
 		}
 	}

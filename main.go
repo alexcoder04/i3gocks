@@ -36,6 +36,7 @@ func main() {
 	fmt.Printf(
 		`[{"full_text": "loading status line...", "color": "%s"}],`,
 		config.Colors["WHITE"])
+	fmt.Println("")
 
 	go ReadInput()
 	for _, m := range config.Modules {
