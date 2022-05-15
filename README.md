@@ -15,18 +15,13 @@ Ukraine, to draw attention to this inacceptable issue.
 [![License](https://img.shields.io/github/license/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/issues)
 [![Pull requests](https://img.shields.io/github/issues-pr/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/pulls)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/commits/main)
-[![Contributors](https://img.shields.io/github/contributors-anon/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/graphs/contributors)
 
 Minimalist status line generator for [i3](https://i3wm.org/) /
-[sway](https://swaywm.org/) bar written in [Go](https://go.dev/).
-
-## How it works
+[sway](https://swaywm.org/) bar written in [Go](https://go.dev/) and configred
+in [Yaml](https://yaml.org/).
 
 In short, this is what [i3blocks](https://github.com/vivien/i3blocks) would
-look like I was had written it.
-
-For more infos, see the [wiki](https://github.com/alexcoder04/kherson/wiki).
+look like I had written it.
 
 ## Installation and configuration
 
