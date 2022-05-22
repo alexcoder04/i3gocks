@@ -27,3 +27,12 @@ look like I had written it.
 
 Refer to the according [wiki pages](https://github.com/alexcoder04/kherson/wiki).
 
+## Contributing
+
+I'm generally open for any kind of contributions, however I try to keep this
+project as simple and minimal as possible, so fancy complex features are
+very unlikely to be accepted.
+
+When in doubt, just open an [issue](https://github.com/alexcoder04/kherson/issues)
+and we'll discuss your idea there.
+
