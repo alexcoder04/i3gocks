@@ -10,6 +10,11 @@ Ukraine, to draw attention to this inacceptable issue.
 
 # kherson
 
+![screenshot 1](screenshots/screenshot-kherson-default.png)
+![screenshot 2](screenshots/screenshot-kherson-dracula-blocks.png)
+![screenshot 3](screenshots/screenshot-kherson-dracula-my.png)
+![screenshot 4](screenshots/screenshot-kherson-my.png)
+
 [![Release](https://img.shields.io/github/v/release/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/releases/latest)
 [![Top language](https://img.shields.io/github/languages/top/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/search?l=go)
 [![License](https://img.shields.io/github/license/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/blob/main/LICENSE)
