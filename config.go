@@ -116,6 +116,10 @@ func LoadConfig() Config {
 		return DefaultConfig("error parsing config")
 	}
 	for i := 0; i < len(config.Modules); i++ {
+		// default interval
+		if config.Modules[i].Interval == 0 {
+			config.Modules[i].Interval = 1
+		}
 		// default foreground color
 		if config.Modules[i].ForegroundColor == "" {
 			config.Modules[i].ForegroundColor = config.Colors["WHITE"]
