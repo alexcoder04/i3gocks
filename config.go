@@ -48,24 +48,16 @@ func DefaultConfig(msg string) Config {
 func LoadColors() map[string]string {
 	// default (gruvbox)
 	colors := map[string]string{
-		"BLACK":        "#282828",
-		"BLUE":         "#458588",
-		"CYAN":         "#689d6a",
-		"DARK_BLUE":    "#458588",
-		"DARK_GREY":    "#6f6357",
-		"GREEN":        "#98971a",
-		"LIGHT_BLUE":   "#83a598",
-		"LIGHT_CYAN":   "#8ec07c",
-		"LIGHT_GREEN":  "#b8bb26",
-		"LIGHT_GREY":   "#a89984",
-		"LIGHT_PURPLE": "#d3869b",
-		"LIGHT_RED":    "#fb4934",
-		"LIGHT_YELLOW": "#fabd2f",
-		"MAGENTA":      "#b16286",
-		"PURPLE":       "#b16286",
-		"RED":          "#cc241d",
-		"WHITE":        "#ebdbb2",
-		"YELLOW":       "#d79921"}
+		"BLACK":      "#282828",
+		"BLUE":       "#458588",
+		"CYAN":       "#689d6a",
+		"DARK_GREY":  "#6f6357",
+		"GREEN":      "#98971a",
+		"LIGHT_GREY": "#a89984",
+		"MAGENTA":    "#b16286",
+		"RED":        "#cc241d",
+		"WHITE":      "#ebdbb2",
+		"YELLOW":     "#d79921"}
 
 	// load from env
 	for _, v := range os.Environ() {

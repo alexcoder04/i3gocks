@@ -27,26 +27,24 @@ func UpdateModule(mod int, counter int, env []string) {
 
 	if err != nil {
 		config.Modules[mod].Text = " error"
-	} else {
-		lines := strings.Split(string(out), "\n")
-		for i := 0; i <= 3; i++ {
-			if len(lines) < i+1 {
-				break
-			}
-			switch i {
-			// first line is text
-			case 0:
-				config.Modules[mod].Text = fmt.Sprintf("%s%s%s",
-					config.Modules[mod].Pre,
-					strings.Replace(lines[i], "\n", " ", -1),
-					config.Modules[mod].Post)
-			// third line is ForegroundColor
-			case 2:
-				config.Modules[mod].ForegroundColor = lines[i]
-			// fourth line is BackgroundColor
-			case 3:
-				config.Modules[mod].BackgroundColor = lines[i]
-			}
+		return
+	}
+
+	lines := strings.Split(string(out), "\n")
+	for i := 0; i <= len(lines)-1; i++ {
+		switch i {
+		// first line is text
+		case 0:
+			config.Modules[mod].Text = fmt.Sprintf("%s%s%s",
+				config.Modules[mod].Pre,
+				strings.Replace(lines[i], "\n", " ", -1),
+				config.Modules[mod].Post)
+		// third line is ForegroundColor
+		case 2:
+			config.Modules[mod].ForegroundColor = lines[i]
+		// fourth line is BackgroundColor
+		case 3:
+			config.Modules[mod].BackgroundColor = lines[i]
 		}
 	}
 }
