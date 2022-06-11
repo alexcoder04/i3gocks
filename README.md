@@ -14,6 +14,7 @@ Ukraine, to draw attention to this inacceptable issue.
 <img style="width: 100%;" alt="screenshot 2" src="screenshots/screenshot-kherson-dracula-blocks.png">
 <img style="width: 100%;" alt="screenshot 3" src="screenshots/screenshot-kherson-dracula-my.png">
 <img style="width: 100%;" alt="screenshot 4" src="screenshots/screenshot-kherson-my.png">
+<img style="width: 100%;" alt="screenshot 5" src="screenshots/screenshot-kherson-macwal-my.png">
 
 [![Release](https://img.shields.io/github/v/release/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/releases/latest)
 [![Top language](https://img.shields.io/github/languages/top/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/search?l=go)
