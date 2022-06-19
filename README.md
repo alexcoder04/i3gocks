@@ -31,7 +31,7 @@ look like if I had written it.
 
 ## Installation and configuration
 
-Refer to the according [wiki pages](https://github.com/alexcoder04/kherson/wiki).
+Refer to the according pages on the [project website](https://alexcoder04.github.io/kherson/).
 
 ## Contributing
 

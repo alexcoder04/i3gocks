@@ -1,5 +1,5 @@
 
-# Arch Linux (AUR)
+# Arch Linux
 
 kherson is available on the [AUR](https://aur.archlinux.org/packages/kherson).
 
