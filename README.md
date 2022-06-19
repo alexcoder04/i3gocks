@@ -27,7 +27,7 @@ Minimalist status line generator for [i3](https://i3wm.org/) /
 in [Yaml](https://yaml.org/).
 
 In short, this is what [i3blocks](https://github.com/vivien/i3blocks) would
-look like I had written it.
+look like if I had written it.
 
 ## Installation and configuration
 
