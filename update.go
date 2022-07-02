@@ -11,14 +11,27 @@ func GetPowerlinePrefix(mod int) string {
 	if !config.Options.PowerlineTheme {
 		return ""
 	}
+	// foreground (symbol itself) is our background
 	fg := config.Modules[mod].BackgroundColor
+	// background is the background of previous shown module
 	var bg string
 	if mod == 0 {
 		bg = config.Colors["BLACK"]
 	} else {
-		bg = config.Modules[mod-1].BackgroundColor
+		i := 0
+		for {
+			i += 1
+			if i < 0 {
+				bg = config.Colors["BLACK"]
+				break
+			}
+			if config.Modules[mod-i].Text != "" {
+				bg = config.Modules[mod-i].BackgroundColor
+				break
+			}
+		}
 	}
-	return fmt.Sprintf("<span foreground='%s' background='%s'>\uE0B2</span>", fg, bg)
+	return fmt.Sprintf("<span foreground='%s' background='%s'>%s</span>", fg, bg, config.Options.PowerlineSeparator)
 }
 
 func UpdateModuleByName(name string, counter int, env []string) {
@@ -49,6 +62,9 @@ func UpdateModule(mod int, counter int, env []string) {
 		switch i {
 		// first line is text
 		case 0:
+			if lines[i] == "" {
+				break
+			}
 			config.Modules[mod].Text = fmt.Sprintf("%s%s%s%s",
 				GetPowerlinePrefix(mod),
 				config.Modules[mod].Pre,

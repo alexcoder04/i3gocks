@@ -14,6 +14,8 @@ var (
 	configLocation = flag.String("config", "", "config file")
 )
 
+// config type definitions {{{
+
 type Module struct {
 	Name            string   `json:"name" yaml:"Name"`
 	Text            string   `json:"full_text" yaml:"-"`
@@ -25,11 +27,14 @@ type Module struct {
 	Args            []string `json:"-" yaml:"Args"`
 	Interval        int      `json:"-" yaml:"Interval"`
 	Markup          string   `json:"markup" yaml:"Markup"`
+	Separator       bool     `json:"separator" yaml:"-"`
+	SeparatorWidth  int      `json:"separator_block_width" yaml:"-"`
 	Signal          int      `json:"-" yaml:"Signal"`
 }
 
 type ConfigOptions struct {
-	PowerlineTheme bool `yaml:"PowerlineTheme"`
+	PowerlineTheme     bool   `yaml:"PowerlineTheme"`
+	PowerlineSeparator string `yaml:"PowerlineSeparator"`
 }
 
 type Config struct {
@@ -38,15 +43,17 @@ type Config struct {
 	Options ConfigOptions     `yaml:"Options"`
 }
 
+// }}}
+
 func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
 		{"msg", "", "#0000ff", "#ffff00", " ", "",
-			"echo", []string{msg}, 60, "none", 0},
+			"echo", []string{msg}, 60, "none", true, 9, 0},
 		{"time", "", "#ffffff", "#000000", " ", "",
-			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none", 0},
+			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none", true, 9, 0},
 		{"kernel", "", "#880088", "#ccccee", " ", "",
-			"uname", []string{"-r"}, 60, "none", 0}}
+			"uname", []string{"-r"}, 60, "none", true, 9, 0}}
 	return config
 }
 
@@ -82,6 +89,7 @@ func LoadConfig() Config {
 
 	var configFile string
 
+	// return default config in certain cases {{{
 	if *configLocation != "" {
 		configFile = *configLocation
 	} else {
@@ -112,6 +120,15 @@ func LoadConfig() Config {
 	if err != nil {
 		return DefaultConfig("error parsing config")
 	}
+
+	// }}}
+
+	// default powerline separator
+	if config.Options.PowerlineTheme && config.Options.PowerlineSeparator == "" {
+		config.Options.PowerlineSeparator = "\uE0B2"
+	}
+
+	// default values and initiallizing {{{
 	for i := 0; i < len(config.Modules); i++ {
 		// default interval
 		if config.Modules[i].Interval == 0 {
@@ -125,18 +142,23 @@ func LoadConfig() Config {
 		if config.Modules[i].BackgroundColor == "" {
 			config.Modules[i].BackgroundColor = config.Colors["BLACK"]
 		}
-		// foreground color reference
+		// enable pango in powerline theme / separator in non-powerline
+		if config.Options.PowerlineTheme {
+			config.Modules[i].Markup = "pango"
+		} else {
+			config.Modules[i].Separator = true
+			config.Modules[i].SeparatorWidth = 9
+		}
+		// resolve foreground color reference
 		if config.Modules[i].ForegroundColor[0] == '*' {
 			config.Modules[i].ForegroundColor = config.Colors[strings.ToUpper(config.Modules[i].ForegroundColor[1:])]
 		}
-		// background color reference
+		// resolve background color reference
 		if config.Modules[i].BackgroundColor != "" && config.Modules[i].BackgroundColor[0] == '*' {
 			config.Modules[i].BackgroundColor = config.Colors[strings.ToUpper(config.Modules[i].BackgroundColor[1:])]
 		}
-		// enable pango on every module in powerline theme
-		if config.Options.PowerlineTheme {
-			config.Modules[i].Markup = "pango"
-		}
 	}
+	// }}}
+
 	return config
 }

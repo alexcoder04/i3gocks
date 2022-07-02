@@ -13,6 +13,10 @@ var mu sync.Mutex
 func draw() {
 	listJson := ""
 	for i := 0; i < len(config.Modules); i++ {
+		if config.Modules[i].Text == "" {
+			continue
+		}
+
 		moduleJson, err := json.Marshal(config.Modules[i])
 		if err != nil {
 			moduleJson = []byte(`{"full_text":" error"}`)

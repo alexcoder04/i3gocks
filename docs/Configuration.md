@@ -10,6 +10,8 @@ If the config does not exist or cannot be loaded, the minimal default hardcoded 
 # Config structure
 
 ```yml
+Options:
+  ...
 Modules:
  - ...
  - ...
@@ -17,6 +19,19 @@ Colors:
  - ...
  - ...
 ```
+
+# Options
+
+```yml
+Options:
+  PowerlineTheme: true
+  PowerlineSeparator: "\uE0BE"
+```
+
+If `PowerlineTheme` is set to true, kherson will draw a custom separator between
+the blocks. This separator is defined in `PowerlineSeparator` and is supposed to
+be a Nerd Font / Powerline glyph (kherson will set its foreground color to
+module's background color, and the background to previous module's background).
 
 # Modules
 
