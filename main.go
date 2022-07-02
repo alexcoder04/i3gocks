@@ -39,9 +39,10 @@ func main() {
 	fmt.Println("")
 
 	go ReadInput()
+	go ListenToReloadConfig()
 	for _, m := range config.Modules {
 		if m.Signal >= 1 && m.Signal <= 15 {
-			go ListenFor(34+m.Signal, m.Name)
+			go ListenFor(m.Signal, m.Name)
 		}
 	}
 

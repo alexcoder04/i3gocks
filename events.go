@@ -23,6 +23,8 @@ type ClickMessage struct {
 	Scale     int    `json:"scale"`
 }
 
+const SIGRTMIN = 34
+
 func ReadInput() {
 	reader := bufio.NewReader(os.Stdin)
 
@@ -53,7 +55,7 @@ func ReadInput() {
 
 func ListenFor(signalNumber int, blockName string) {
 	channel := make(chan os.Signal, 1)
-	signal.Notify(channel, syscall.Signal(signalNumber))
+	signal.Notify(channel, syscall.Signal(SIGRTMIN+signalNumber))
 	select {
 	case <-channel:
 		mu.Lock()
@@ -61,5 +63,25 @@ func ListenFor(signalNumber int, blockName string) {
 		draw()
 		mu.Unlock()
 		ListenFor(signalNumber, blockName)
+	}
+}
+
+func ListenToReloadConfig() {
+	channel := make(chan os.Signal, 1)
+	signal.Notify(channel, syscall.Signal(syscall.SIGUSR1))
+	select {
+	case <-channel:
+		mu.Lock()
+		fmt.Printf(
+			`[{"full_text": "reloading config...", "color": "%s"}],`,
+			config.Colors["WHITE"])
+		config = LoadConfig()
+		for i := 0; i < len(config.Modules); i++ {
+			UpdateModule(i, 0, []string{})
+		}
+		draw()
+		mu.Unlock()
+
+		ListenToReloadConfig()
 	}
 }
