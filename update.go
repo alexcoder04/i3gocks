@@ -7,6 +7,20 @@ import (
 	"strings"
 )
 
+func GetPowerlinePrefix(mod int) string {
+	if !config.Options.PowerlineTheme {
+		return ""
+	}
+	fg := config.Modules[mod].BackgroundColor
+	var bg string
+	if mod == 0 {
+		bg = config.Colors["BLACK"]
+	} else {
+		bg = config.Modules[mod-1].BackgroundColor
+	}
+	return fmt.Sprintf("<span foreground='%s' background='%s'>\uE0B2</span>", fg, bg)
+}
+
 func UpdateModuleByName(name string, counter int, env []string) {
 	for i := 0; i < len(config.Modules); i++ {
 		if name == config.Modules[i].Name {
@@ -35,7 +49,8 @@ func UpdateModule(mod int, counter int, env []string) {
 		switch i {
 		// first line is text
 		case 0:
-			config.Modules[mod].Text = fmt.Sprintf("%s%s%s",
+			config.Modules[mod].Text = fmt.Sprintf("%s%s%s%s",
+				GetPowerlinePrefix(mod),
 				config.Modules[mod].Pre,
 				strings.Replace(lines[i], "\n", " ", -1),
 				config.Modules[mod].Post)

@@ -28,9 +28,14 @@ type Module struct {
 	Signal          int      `json:"-" yaml:"Signal"`
 }
 
+type ConfigOptions struct {
+	PowerlineTheme bool `yaml:"PowerlineTheme"`
+}
+
 type Config struct {
 	Modules []Module          `yaml:"Modules"`
 	Colors  map[string]string `yaml:"Colors"`
+	Options ConfigOptions     `yaml:"Options"`
 }
 
 func DefaultConfig(msg string) Config {
@@ -127,6 +132,10 @@ func LoadConfig() Config {
 		// background color reference
 		if config.Modules[i].BackgroundColor != "" && config.Modules[i].BackgroundColor[0] == '*' {
 			config.Modules[i].BackgroundColor = config.Colors[strings.ToUpper(config.Modules[i].BackgroundColor[1:])]
+		}
+		// enable pango on every module in powerline theme
+		if config.Options.PowerlineTheme {
+			config.Modules[i].Markup = "pango"
 		}
 	}
 	return config
