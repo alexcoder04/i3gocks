@@ -13,8 +13,9 @@ Ukraine, to draw attention to this inacceptable issue.
 <img style="width: 100%;" alt="screenshot 1" src="screenshots/screenshot-kherson-default.png">
 <img style="width: 100%;" alt="screenshot 2" src="screenshots/screenshot-kherson-dracula-blocks.png">
 <img style="width: 100%;" alt="screenshot 3" src="screenshots/screenshot-kherson-dracula-my.png">
-<img style="width: 100%;" alt="screenshot 4" src="screenshots/screenshot-kherson-my.png">
-<img style="width: 100%;" alt="screenshot 5" src="screenshots/screenshot-kherson-macwal-my.png">
+<img style="width: 100%;" alt="screenshot 4" src="screenshots/screenshot-kherson-powerline-oceanic-next.png">
+<img style="width: 100%;" alt="screenshot 5" src="screenshots/screenshot-kherson-my.png">
+<img style="width: 100%;" alt="screenshot 6" src="screenshots/screenshot-kherson-macwal-my.png">
 
 [![Release](https://img.shields.io/github/v/release/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/releases/latest)
 [![Top language](https://img.shields.io/github/languages/top/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/search?l=go)
@@ -35,9 +36,9 @@ Refer to the according pages on the [project website](https://alexcoder04.github
 
 ## Contributing
 
-I'm generally open for any kind of contributions, however I try to keep this
-project as simple and minimal as possible, so fancy complex features are
-very unlikely to be accepted.
+I'm generally open for any kind of contributions, however I have a pretty
+specific view on the design of this project, so fancy complex features probably
+would not be accepted.
 
 When in doubt, just open an [issue](https://github.com/alexcoder04/kherson/issues)
 and we'll discuss your idea there.
