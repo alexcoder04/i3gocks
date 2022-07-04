@@ -18,6 +18,7 @@ Ukraine, to draw attention to this inacceptable issue.
 <img style="width: 100%;" alt="screenshot 6" src="screenshots/screenshot-kherson-macwal-my.png">
 
 [![Release](https://img.shields.io/github/v/release/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/releases/latest)
+[![AUR](https://img.shields.io/aur/version/kherson)](https://aur.archlinux.org/packages/kherson)
 [![Top language](https://img.shields.io/github/languages/top/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/search?l=go)
 [![License](https://img.shields.io/github/license/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/alexcoder04/kherson)](https://github.com/alexcoder04/kherson/issues)
