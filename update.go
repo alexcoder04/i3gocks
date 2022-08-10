@@ -42,22 +42,31 @@ func UpdateModuleByName(name string, counter int, env []string) {
 	}
 }
 
+func ExecuteCommand(command string, args []string, env []string) []string {
+	cmd := exec.Command(command, args...)
+	cmd.Env = append(os.Environ(), env...)
+	out, err := cmd.Output()
+
+	if err != nil {
+		return []string{" error"}
+	}
+
+	return strings.Split(string(out), "\n")
+}
+
 func UpdateModule(mod int, counter int, env []string) {
 	// don't update if interval didn't pass
 	if counter%config.Modules[mod].Interval != 0 {
 		return
 	}
 
-	cmd := exec.Command(config.Modules[mod].Command, config.Modules[mod].Args...)
-	cmd.Env = append(os.Environ(), env...)
-	out, err := cmd.Output()
-
-	if err != nil {
-		config.Modules[mod].Text = " error"
-		return
+	var lines []string
+	if config.Modules[mod].Command[0] == '*' {
+		lines = ExecuteBuiltIn(config.Modules[mod].Command[1:], config.Modules[mod].Args)
+	} else {
+		lines = ExecuteCommand(config.Modules[mod].Command, config.Modules[mod].Args, env)
 	}
 
-	lines := strings.Split(string(out), "\n")
 	for i := 0; i <= len(lines)-1; i++ {
 		switch i {
 		// first line is text
