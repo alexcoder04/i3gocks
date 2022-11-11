@@ -6,6 +6,8 @@ civilians. This has to stop! I named my new project after
 [Kherson](https://en.wikipedia.org/wiki/Kherson), a city in the south of
 Ukraine, to draw attention to this inacceptable issue.
 
+*Update 11.11.2022:* Kherson is Ukrainian ~~again~~ as it always was.
+
 ---
 
 # kherson
