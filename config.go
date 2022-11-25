@@ -49,9 +49,9 @@ func DefaultConfig(msg string) Config {
 	config := Config{}
 	config.Modules = []Module{
 		{"msg", "", "#0000ff", "#ffff00", " ", "",
-			"echo", []string{msg}, 60, "none", true, 9, 0},
+			"*echo", []string{msg}, 60, "none", true, 9, 0},
 		{"time", "", "#ffffff", "#000000", " ", "",
-			"date", []string{"+%d.%m.%Y - %R:%S"}, 1, "none", true, 9, 0},
+			"*time", []string{}, 1, "none", true, 9, 0},
 		{"kernel", "", "#880088", "#ccccee", " ", "",
 			"uname", []string{"-r"}, 60, "none", true, 9, 0}}
 	return config

@@ -91,12 +91,11 @@ ForegroundColor
 BackgroundColor
 ```
 
-If the command starts with `*`, it is interpreted as a name of a built-in module.
-Those are:
+If the command starts with `*`, it is interpreted as a name of a built-in module. Those are:
 
- - `date` / `time` / `datetime`: the current date and time. Args: `["format"]`.
+ - `*time`: the current date and time. Args: `["format"]`.
    Format is in the Go time format fashion (`02.01.2006 (Mon) 15:04:05`).
- - `echo` / `print`: print some text. Args: `["text", "text", "text"]`
+ - `*echo`: print some text. Args: `["text", "text", ...]`
 
 Possible values: any executable on your system / any builtin.
 

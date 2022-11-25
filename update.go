@@ -62,7 +62,7 @@ func UpdateModule(mod int, counter int, env []string) {
 
 	var lines []string
 	if config.Modules[mod].Command[0] == '*' {
-		lines = ExecuteBuiltIn(config.Modules[mod].Command[1:], config.Modules[mod].Args)
+		lines = BuiltIns[config.Modules[mod].Command[1:]](config.Modules[mod].Args)
 	} else {
 		lines = ExecuteCommand(config.Modules[mod].Command, config.Modules[mod].Args, env)
 	}

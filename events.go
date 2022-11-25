@@ -56,32 +56,28 @@ func ReadInput() {
 func ListenFor(signalNumber int, blockName string) {
 	channel := make(chan os.Signal, 1)
 	signal.Notify(channel, syscall.Signal(SIGRTMIN+signalNumber))
-	select {
-	case <-channel:
-		mu.Lock()
-		UpdateModuleByName(blockName, 0, []string{})
-		draw()
-		mu.Unlock()
-		ListenFor(signalNumber, blockName)
-	}
+	<-channel
+	mu.Lock()
+	UpdateModuleByName(blockName, 0, []string{})
+	draw()
+	mu.Unlock()
+	ListenFor(signalNumber, blockName)
 }
 
 func ListenToReloadConfig() {
 	channel := make(chan os.Signal, 1)
 	signal.Notify(channel, syscall.Signal(syscall.SIGUSR1))
-	select {
-	case <-channel:
-		mu.Lock()
-		fmt.Printf(
-			`[{"full_text": "reloading config...", "color": "%s"}],`,
-			config.Colors["WHITE"])
-		config = LoadConfig()
-		for i := 0; i < len(config.Modules); i++ {
-			UpdateModule(i, 0, []string{})
-		}
-		draw()
-		mu.Unlock()
-
-		ListenToReloadConfig()
+	<-channel
+	mu.Lock()
+	fmt.Printf(
+		`[{"full_text": "reloading config...", "color": "%s"}],`,
+		config.Colors["WHITE"])
+	config = LoadConfig()
+	for i := 0; i < len(config.Modules); i++ {
+		UpdateModule(i, 0, []string{})
 	}
+	draw()
+	mu.Unlock()
+
+	ListenToReloadConfig()
 }
