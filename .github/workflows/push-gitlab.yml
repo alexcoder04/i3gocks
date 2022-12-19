@@ -11,7 +11,7 @@ env:
 
 jobs:
   push:
-    if: github.repository == "alexcoder04/kherson"
+    if: github.repository == 'alexcoder04/kherson'
     runs-on: ubuntu-latest
     
     steps:
