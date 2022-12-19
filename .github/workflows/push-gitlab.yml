@@ -1,0 +1,25 @@
+
+name: Push to GitLab
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  USERNAME: alexcoder04
+  GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+
+jobs:
+  push:
+    if: github.repository == "alexcoder04/kherson"
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Push
+      run: |
+        git config user.name "${USERNAME}"
+        git config user.email "${USERNAME}@protonmail.com"
+        git remote set-url gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/${USERNAME}/kherson.git"
+        git push gitlab main
