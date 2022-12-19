@@ -5,10 +5,6 @@ on:
   push:
     branches: [ "main" ]
 
-env:
-  USERNAME: alexcoder04
-  GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-
 jobs:
   push:
     if: github.repository == 'alexcoder04/kherson'
@@ -19,7 +15,7 @@ jobs:
 
     - name: Push
       run: |
-        git config user.name "${USERNAME}"
-        git config user.email "${USERNAME}@protonmail.com"
-        git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/${USERNAME}/kherson.git"
+        git config user.name "${{ github.repository_owner }}"
+        git config user.email "${{ github.repository_owner }}@protonmail.com"
+        git remote add gitlab "https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/${{ github.repository }}.git"
         git push gitlab main
