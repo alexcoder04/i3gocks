@@ -97,13 +97,13 @@ func LoadConfig() Config {
 		if err != nil {
 			return DefaultConfig("cannot get config dir")
 		}
-		configFile = path.Join(configDir, "kherson", "config.yml")
+		configFile = path.Join(configDir, "i3gocks", "config.yml")
 	}
 
 	_, err := os.Stat(configFile)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return DefaultConfig("kherson (default config)")
+			return DefaultConfig("i3gocks (default config)")
 		}
 		return DefaultConfig("cannot stat config")
 	}

@@ -1,7 +1,7 @@
 
 SHELL = /bin/sh
 PREFIX ?= /usr
-NAME = kherson
+NAME = i3gocks
 
 build:
 	GOOS=linux GOARCH=amd64 go build -o $(NAME) .

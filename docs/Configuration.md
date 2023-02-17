@@ -3,7 +3,7 @@
 
 Configuration is done in [yaml](https://yaml.org/), a human- and machine-friendly markup language.
 
-The config file is located at `$XDG_CONFIG_HOME/kherson/config.yml`
+The config file is located at `$XDG_CONFIG_HOME/i3gocks/config.yml`
 
 If the config does not exist or cannot be loaded, the minimal default hardcoded config is used.
 
@@ -28,9 +28,9 @@ Options:
   PowerlineSeparator: "\uE0BE"
 ```
 
-If `PowerlineTheme` is set to true, kherson will draw a custom separator between
+If `PowerlineTheme` is set to true, i3gocks will draw a custom separator between
 the blocks. This separator is defined in `PowerlineSeparator` and is supposed to
-be a Nerd Font / Powerline glyph (kherson will set its foreground color to
+be a Nerd Font / Powerline glyph (i3gocks will set its foreground color to
 module's background color, and the background to previous module's background).
 
 # Modules
@@ -52,7 +52,7 @@ module's background color, and the background to previous module's background).
 
 ## Name
 
-Key that is used by i3bar/swaybar and kherson to identify the blocks.
+Key that is used by i3bar/swaybar and i3gocks to identify the blocks.
 
 Possible values: any string
 
@@ -119,7 +119,7 @@ Possible values: `none` / `pango`
 
 ## Signal
 
-Number of signal (`SIGRTMIN+n`) that can be sent to kherson to reload the block.
+Number of signal (`SIGRTMIN+n`) that can be sent to i3gocks to reload the block.
 
 Possible values: `1`-`15`
 

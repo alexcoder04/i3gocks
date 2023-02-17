@@ -1,17 +1,17 @@
 
 # Arch Linux
 
-kherson is available on the [AUR](https://aur.archlinux.org/packages/kherson).
+i3gocks is available on the [AUR](https://aur.archlinux.org/packages/i3gocks).
 
 # Prebuild release (all distros, binary only)
 
-Download the binary from [github.com/alexcoder04/kherson/releases/latest](https://github.com/alexcoder04/kherson/releases/latest) and copy it to a directory in your `$PATH`.
+Download the binary from [github.com/alexcoder04/i3gocks/releases/latest](https://github.com/alexcoder04/i3gocks/releases/latest) and copy it to a directory in your `$PATH`.
 
 # Other Distros (Make)
 
 ```sh
-git clone "https://github.com/alexcoder04/kherson.git"
-cd kherson
+git clone "https://github.com/alexcoder04/i3gocks.git"
+cd i3gocks
 make
 sudo make install
 ```

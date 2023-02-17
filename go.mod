@@ -1,4 +1,4 @@
-module github.com/alexcoder04/kherson
+module github.com/alexcoder04/i3gocks
 
 go 1.18
 
