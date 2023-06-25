@@ -23,9 +23,6 @@ In short, this is what [i3blocks](https://github.com/vivien/i3blocks) would
 look like if I had written it.
 This is also where the name comes from - a combination from `i3blocks` and `go`.
 
-**Note:** this project was formely known as `kherson`, which however could be
-considered cultural appropriation, so I decided to rename it.
-
 ## Installation and configuration
 
 Refer to the according pages on the [project website](https://alexcoder04.github.io/i3gocks/).
